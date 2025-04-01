@@ -1,0 +1,162 @@
+<%- include('partials/header') %>
+
+
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Freshly Baked Cakes From Scratch</h1>
+        <p class="lead">Every treat is created with the best quality ingredients to ensure that our customers enjoy them
+          at every occasion.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a type="button" href="/order" class="btn btn-outline-dark btn-lg px-4 me-md-2">Order Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section id="heading" class="menu-section" style="margin-top: 50px;">
+    <div>
+      <h2>Our Products</h2>
+    </div>
+
+  </section>
+
+  <section id="features" style="margin-top: 80px;">
+
+    <div class="card border-dark mb-3" style="width: 18rem;">
+      <a href="/celebration-cake">
+        <img src="./celebration-cake.jpg" class="card-img-top" alt="..." style="height: 225px;">
+        <div class="card-body">
+          <h5 class="card-title">Celebration Cakes</h5>
+          <p class="card-text">We can cater for any type of celebration or event including birthdays, baby showers,
+            anniversaries, christenings or corporate events.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="card border-dark mb-3" style="width: 18rem;">
+      <a href="/cupcakes">
+        <img src="./cupcakes.jpg" class="card-img-top" alt="..." style="height: 225px;">
+        <div class="card-body">
+          <h5 class="card-title">Cupcakes</h5>
+          <p class="card-text">With a huge range of classic cupcakes, including dairy free and gluten free options, as
+            well as designs for all occasions.</p>
+        </div>
+      </a>
+    </div>
+
+
+    <div class="card border-dark mb-3" style="width: 18rem;">
+      <a href="/homemade-cake">
+        <img src="./homemade-cake.jpg" class="card-img-top" alt="..." style="height: 225px;">
+        <div class="card-body">
+          <h5 class="card-title">Homemade Cakes</h5>
+          <p class="card-text">There is no better way to celebrate a special occasion than with a wonderfully designed
+            celebration cake.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="card border-dark mb-3" style="width: 18rem;">
+      <a href="/muffins">
+        <img src="/front-view-set-chocolate-muffins.jpg" class="card-img-top" alt="..." style="height: 225px;">
+        <div class="card-body">
+          <h5 class="card-title">Muffins</h5>
+          <p class="card-text">Soft, fluffy muffins baked to perfection. Perfect for any time of the day.<p>
+        </div>
+      </a>
+    </div>
+
+   
+    <div class="card border-dark mb-3" style="width: 18rem;">
+      <a href="#" data-bs-toggle="modal" data-bs-target="#bentoModal">
+          <img src="/bento.jpg" class="card-img-top" alt="Bento Cake" style="height: 225px;">
+          <div class="card-body">
+              <h5 class="card-title">Bento Cakes</h5>
+              <p class="card-text">Customizable Bento Cakes perfect for small celebrations.</p>
+          </div>
+      </a>
+  </div>
+
+  <div class="modal fade" id="bentoModal" tabindex="-1" aria-labelledby="bentoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bentoModalLabel">Bento Cake Pricelist</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Bento cake - 5” (feeds 2-3 people)</li>
+                    <li class="list-group-item">Bento box with 5 cupcakes - R460</li>
+                    <li class="list-group-item">Bento box with 6 cupcakes - R480</li>
+                    <li class="list-group-item">Bento box with 8 cupcakes - R500</li>
+                    <li class="list-group-item">Bento box with 12 cupcakes - R700</li>
+                </ul>
+                <p class="mt-3">Customize your bento cake with your preferred design and flavors.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="/order?product=Bento Cake" class="btn btn-dark">Order Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+
+    <div class="card border-dark mb-3" style="width: 18rem;">
+      <a href="/desserts">
+        <img src="/cakes-macarons-plate-with-mint.jpg" class="card-img-top" alt="..." style="height: 225px;">
+        <div class="card-body">
+          <h5 class="card-title">Desserts</h5>
+          <p class="card-text">Delicious and beautifully crafted desserts, perfect for any occasion.</p>
+        </div>
+      </a>
+</div>
+
+  </section>
+
+  <section id="Baker">
+    <div class="p-5 text-center">
+      <div class="container py-5">
+        <h1 class="text-body-emphasis">About Us</h1>
+        <p class="col-lg-8 mx-auto lead">
+          Welcome to Sonwa’s Treats, where every bite is a celebration of flavor and craftsmanship. Our bakery is built on a love
+          for creating mouthwatering desserts made from the finest ingredients. From classic cakes and pastries to innovative
+          sweet creations, each treat is baked with care and attention to detail. Whether you're celebrating a special occasion or
+          simply indulging in a little sweetness, Sonwa’s Treats is here to bring a touch of joy to your day. Explore our menu,
+          and let us add a little extra sweetness to your life!
+        </p>
+      </div>
+    </div>
+
+    <% if (typeof contactSuccess !=="undefined" && contactSuccess==="1" ) { %>
+      <div id="confirmation-message" class="alert alert-success text-center">✅ Message sent successfully!</div>
+      <script> 
+            // Scroll smoothly to the confirmation message
+            let message = document.getElementById("confirmation-message");
+            if (message) {
+                message.scrollIntoView({ behavior: "smooth" });
+            }
+        setTimeout(() => {
+                        window.location.href = "/home"; // Redirect after 5 seconds
+                    }, 5000);
+      </script>
+      <% } else if (typeof contactError !=="undefined" && contactError==="1" ) { %>
+        <div class="alert alert-danger text-center">❌ Error sending message. Try again.</div>
+        <% } %>
+
+  </section>
+
+
+
+
+  <%- include('partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+    </html>

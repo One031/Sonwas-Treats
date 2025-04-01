@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+<section class="container py-5" style="margin-top: 80px;">
+    <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 text-center">Cupcakes</h1>
+    <p class="lead text-center">Soft and fluffy cupcakes with rich flavors and creamy toppings. Perfect for any occasion.</p>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 360px;">
+        <div class="col">
+            <div class="card h-100">
+                <img src="/Chocolate-Cupcakes.jpg" class="card-img-top" alt="[Product1 Name]" style="height: 300px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Chocolate Cupcake</h5>
+                    <p class="card-text">Moist chocolate cupcake topped with smooth chocolate frosting.</p>
+                    <a href="/order?product=Cupcakes&flavor=Chocolate" class="btn btn-dark" style="color: white;">Order Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card h-100">
+                <img src="/vanilla-cupcake.jpg" class="card-img-top" alt="[Product2 Name]" style="height: 300px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Vanilla Cupcake</h5>
+                    <p class="card-text">Classic vanilla cupcake with a buttery, sweet flavor and creamy frosting.</p>
+                    <a href="/order?product=Cupcakes&flavor=Vanilla" class="btn btn-dark" style="color: white;">Order Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card h-100">
+                <img src="/cupcakes-red-velvet.jpg" class="card-img-top" alt="[Product3 Name]" style="height: 300px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Red Velvet Cupcake</h5>
+                    <p class="card-text">Rich red velvet cake with a hint of cocoa, topped with cream cheese frosting.</p>
+                    <a href="/order?product=Cupcakes&flavor=Red Velvet" class="btn btn-dark" style="color: white;">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<%- include('partials/footer') %>

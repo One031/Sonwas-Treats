@@ -1,0 +1,449 @@
+<%- include('partials/header') %>
+
+    <% const productName=product || "Select Product" ; const flavorName=flavor || "Select Flavor" ; const dessertName = dessert || "Select a Dessert"; %>
+
+        <section class="container py-5" style="max-width: 800px; margin-top: 80px;">
+
+
+            <h1 class="display-5 fw-bold text-center">Order Details</h1>
+            <p class="text-center">Customize your order and submit the details below.</p>
+
+            <form action="/submit-order" style="margin-top: 360px;" method="POST" enctype="multipart/form-data">
+                <!-- Policy Information -->
+                <div class="policy-section">
+                    <h3>Order Policy</h3>
+                    <ul>
+                        <li>All orders must be made a week before.</li>
+                        <li>Edible prints will be an extra charge.</li>
+                        <li>Full payment upfront.</li>
+                        <li>Due to the perishable nature of cakes, we do not offer refunds or exchanges.</li>
+                        <li>Sonwa’s Treats will not be held liable for any damages post cake pick-up.</li>
+                        <li>No delivery – Collection or Uber Connect only.</li>
+                    </ul>
+                </div>
+
+                <!-- Product Details -->
+                <h4 class="mt-4">Product Information</h4>
+                <div class="mb-3">
+                    <label class="form-label">Product</label>
+                    <select class="form-select" name="product" id="product-select">
+                        <option value="" disabled selected>Select a Product</option>
+                        <option value="Cake" <%=productName==="Cake" ? "selected" : "" %>> Homemade Cake
+                        </option>
+                        <option value="Cupcakes" <%=productName==="Cupcakes" ? "selected" : "" %>
+                            >Cupcakes</option>
+                        <option value="Bento Cake" <%=productName==="Bento Cake" ? "selected" : "" %>>Bento Cake
+                        </option>
+                        <option value="Desserts" <%=productName==="Desserts" ? "selected" : "" %>
+                            >Desserts</option>
+                        <option value="Muffins" <%=productName==="Muffins" ? "selected" : "" %>
+                            >Muffins</option>
+                        <option value="Celebration Cake" <%=productName==="Celebration Cake" ? "selected" : "" %>
+                            >Celebration Cake</option>
+                    </select>
+                </div>
+
+                <!-- Bento Packages -->
+                <div id="bento-package-container" class="package-select" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label">Bento Package</label>
+                        <select class="form-select" name="bentoPackage">
+                            <option value="" disabled selected>Select a Bento Package</option>
+                            <option value="bento-5cupcakes" data-price="460">Bento Box with 5 Cupcakes - R460</option>
+                            <option value="bento-6cupcakes" data-price="480">Bento Box with 6 Cupcakes - R480</option>
+                            <option value="bento-8cupcakes" data-price="500">Bento Box with 8 Cupcakes - R500</option>
+                            <option value="bento-12cupcakes" data-price="700">Bento Box with 12 Cupcakes - R700</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Bento Cake Customization -->
+                <div id="bento-customization" style="display: none;">
+                    <h4 class="mt-4">Bento Cake Customization</h4>
+
+                    <!-- Cake Shape -->
+                    <div class="mb-3">
+                        <label class="form-label">Cake Shape</label>
+                        <select class="form-select" name="bentoShape">
+                            <option value="" disabled selected>Select a Shape</option>
+                            <option value="Round">Round</option>
+                            <option value="Square">Square</option>
+                            <option value="Heart">Heart</option>
+                        </select>
+                    </div>
+
+                    <!-- Custom Text -->
+                    <div class="mb-3">
+                        <label class="form-label">Custom Text on Cake</label>
+                        <input type="text" class="form-control" name="bentoText"
+                            placeholder="Happy Birthday, Congrats, etc.">
+                    </div>
+
+                    <!-- Theme/Color Scheme -->
+                    <div class="mb-3">
+                        <label class="form-label">Theme/Color Scheme</label>
+                        <input type="text" class="form-control" name="bentoTheme"
+                            placeholder="E.g. pastel colors, floral theme">
+                    </div>
+
+                    <!-- Packaging Option -->
+                    <div class="mb-3">
+                        <label class="form-label">Packaging Option</label>
+                        <select class="form-select" name="bentoPackaging">
+                            <option value="" disabled selected>Select Packaging</option>
+                            <option value="Standard Box">Standard Box</option>
+                            <option value="Gift Box">Gift Box</option>
+                        </select>
+                    </div>
+
+                    <!-- Special Requests -->
+                    <div class="mb-3">
+                        <label class="form-label">Special Requests</label>
+                        <textarea class="form-control" name="bentoSpecialRequests" rows="3"
+                            placeholder="Any additional requests"></textarea>
+                    </div>
+                </div>
+
+                <!-- Muffins Packages -->
+                <div id="muffins-package-container" class="package-select" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label">Muffins Package</label>
+                        <select class="form-select" name="muffinsPackage">
+                            <option value="" disabled selected>Select a Muffins Package</option>
+                            <option value="muffins-12" data-price="90">Package of 12 - R90</option>
+                            <option value="muffins-24" data-price="170">Package of 24 - R170</option>
+                            <option value="muffins-36" data-price="240">Package of 36 - R240</option>
+                            <option value="muffins-48" data-price="310">Package of 48 - R310</option>
+                            <option value="muffins-60" data-price="360">Package of 60 - R360</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Cupcakes Packages -->
+                <div id="cupcakes-package-container" class="package-select" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label">Cupcakes Pricing</label>
+                        <div id="pricing">
+                            <p>• 12-30 Cupcakes: R19 each</p>
+                            <p>• 35+ Cupcakes: R17 each</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Number of Cupcakes</label>
+                        <input type="number" class="form-control" id="cupcakes-quantity" name="cupcakesQuantity"
+                            min="12" value="12">
+                        <small class="form-text text-muted">Minimum order: 12 cupcakes</small>
+                    </div>
+                    <div class="mb-3">
+                        <p class="cupcakes-subtotal">Subtotal: <span id="cupcakes-subtotal">R0</span></p>
+                    </div>
+                </div>
+
+                <!-- Desserts Section -->
+                <div id="dessert-container" class="package-select" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label">Dessert</label>
+                        <select class="form-select" name="dessert">
+                            <option value="" disabled selected>Select a Dessert</option>
+                            <option value="lemon-meringue" data-price="700" <%=dessertName==="Lemon Meringue" ? "selected" : "" %> >Lemon Meringue - R700</option>
+                            <option value="peppermint-tart" data-price="700"  <%=dessertName==="Peppermint Tart" ? "selected" : "" %>>Peppermint Tart - R700</option>
+                            <option value="milk-tart" data-price="650"  <%=dessertName==="Milk Tart" ? "selected" : "" %>>Milk Tart - R650</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- Flavor Selection -->
+                <div class="mb-3"  style="display: block;" id="flavor-select">
+                    <label class="form-label">Flavor</label>
+                    <select class="form-select" name="flavor">
+                        <option value="" disabled selected>Select a Flavor</option>
+                        <option value="Chocolate" <%=flavorName==="Chocolate" ? "selected" : "" %>
+                            >Chocolate</option>
+                        <option value="Double Chocolate"<%=flavorName==="Double Chocolate" ? "selected"
+                            : "" %>>Double Chocolate</option>
+                        <option value="Vanilla" <%=flavorName==="Vanilla" ? "selected" : "" %>>Vanilla
+                        </option>
+                        <option value="Strawberry" <%=flavorName==="Strawberry" ? "selected" : "" %>
+                            >Strawberry </option>
+                        <option value="Red Velvet" <%=flavorName==="Red Velvet" ? "selected" : "" %>>Red
+                            Velvet </option>
+                        <option value="Banana" <%=flavorName==="Banana" ? "selected" : "" %>>Banana
+                        </option>
+                        <option value="Blueberry" <%=flavorName==="Blueberry" ? "selected" : "" %>
+                            >Blueberry</option>
+                        <option value="Carrot" <%=flavorName==="Carrot" ? "selected" : "" %>
+                            >Carrot</option>
+                    </select>
+                </div>
+
+
+
+                <!-- Customization Section (Only for Celebration Cakes) -->
+                <div id="custom-request-section" style="display: none;">
+                    <h4 class="mt-4">Custom Request Details</h4>
+
+                    <!-- Input for theme or design preferences -->
+                    <div class="mb-3">
+                        <label class="form-label">Cake Theme / Design</label>
+                        <input type="text" class="form-control" name="cakeTheme"
+                            placeholder="e.g., Floral, Cartoon, Minimalist">
+                    </div>
+
+                    <!-- Input for custom message on the cake -->
+                    <div class="mb-3">
+                        <label class="form-label">Custom Message on Cake</label>
+                        <input type="text" class="form-control" name="customMessage"
+                            placeholder="e.g., Happy Birthday John!">
+                    </div>
+
+                    <!-- File upload field for reference images -->
+                    <div class="mb-3">
+                        <label class="form-label">Upload Reference Image (Optional)</label>
+                        <input type="file" class="form-control" name="referenceImage">
+                    </div>
+
+                    <!-- Special instructions textarea -->
+                    <div class="mb-3">
+                        <label class="form-label">Special Instructions</label>
+                        <textarea class="form-control" name="specialInstructions" rows="3"
+                            placeholder="Any specific requests for your cake?"></textarea>
+                    </div>
+
+                    <!-- Inform the user that pricing will be discussed separately -->
+                    <p class="text-danger">Price will be confirmed after discussing your custom request.</p>
+                </div>
+
+                <!-- Customer Information -->
+                <h4 class="mt-4">Your Information</h4>
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" name="customerName" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="customerEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" name="customerPhone" required>
+                </div>
+
+                <!-- Size Selection -->
+                <h4 class="mt-4">Select Size</h4>
+                <div class="mb-3">
+                    <label class="form-label">Size</label>
+                    <select class="form-select" id="size-select" name="size">
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </div>
+
+                <h4 class="mt-4">Select Date</h4>
+                <div class="mb-3">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+
+                <script>
+                    // Get today's date
+                    const today = new Date();
+
+                    // Get the date 7 days from today
+                    const disabledUntil = new Date();
+                    disabledUntil.setDate(today.getDate() + 7);
+
+                    // Convert to YYYY-MM-DD format
+                    const minDate = disabledUntil.toISOString().split('T')[0];
+
+                    // Set the min attribute to 7 days from today
+                    document.getElementById('date').setAttribute('min', minDate);
+                </script>
+
+                <!-- Additional Notes -->
+                <h4 class="mt-4">Additional Notes</h4>
+                <div class="mb-3">
+                    <textarea class="form-control" name="notes" rows="3"
+                        placeholder="Special requests, dietary restrictions, etc."></textarea>
+                </div>
+
+
+                <h4 id="total-section" class="mt-4 text-center">Total Price: <span id="total-price">R0</span></h4>
+                <input type="hidden" name="totalAmount" id="totalAmount">
+
+                <!-- Submit Button -->
+                <div id="submit-btn" class=" mt-4 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-dark">Place Order</button>
+                </div>
+            </form>
+
+            <!-- Success Message (Hidden by Default) -->
+            <% if (success==="1" ) { %>
+                <div id="confirmation-message" class=" mt-4"
+                    style="text-align: center; padding: 20px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
+                    <h2>🎉 Your order has been placed successfully!</h2>
+                    <p>Thank you! You will receive a confirmation email shortly.</p>
+                    <p>Redirecting you to the home page...</p>
+                </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        if (window.location.search.includes("success=1")) {
+                            // Scroll smoothly to the confirmation message
+                            document.getElementById("confirmation-message").scrollIntoView({ behavior: "smooth" });
+                        }
+                    });
+
+                    setTimeout(() => {
+                        window.location.href = "/home"; // Redirect after 5 seconds
+                    }, 5000);
+                </script>
+                <% } %>
+        </section>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get all required elements
+                const productSelect = document.getElementById("product-select");
+                const flavorSelect = document.getElementById("flavor-select");
+                const totalPriceDisplay = document.getElementById("total-price");
+                const totalAmountInput = document.getElementById("totalAmount");
+                const customSection = document.getElementById("custom-request-section");
+                const bentoPackageContainer = document.getElementById("bento-package-container");
+                const bentoCustom = document.getElementById("bento-customization");
+                const muffinsPackageContainer = document.getElementById("muffins-package-container");
+                const cupcakesPackageContainer = document.getElementById("cupcakes-package-container");
+                const dessertContainer = document.getElementById("dessert-container");
+                const totalSection = document.getElementById("total-section");
+                const cupcakesQuantity = document.getElementById("cupcakes-quantity");
+                const cupcakesSubtotal = document.getElementById("cupcakes-subtotal");
+
+                // Define updateTotalPrice first so it's available to all other functions
+                function updateTotalPrice() {
+                    let totalPrice = 0;
+
+                    // Only calculate price if we're not in a custom section
+                    if (window.getComputedStyle(customSection).display === "none") {
+                        // Get all visible package containers
+                        document.querySelectorAll(".package-select").forEach(container => {
+                            if (window.getComputedStyle(container).display !== "none") {
+                                // Special handling for cupcakes container
+                                if (container.id === "cupcakes-package-container" && cupcakesPackageContainer.style.display !== "none") {
+                                    // Calculate cupcakes price directly
+                                    const quantity = parseInt(cupcakesQuantity.value) || 12;
+                                    const pricePerUnit = quantity >= 35 ? 17 : 19;
+                                    const subtotal = pricePerUnit * quantity;
+                                    totalPrice += subtotal;
+                                } else {
+                                    // For other containers, find the select element inside
+                                    const selectElement = container.querySelector("select");
+                                    if (selectElement && selectElement.selectedIndex > 0) {
+                                        const selectedOption = selectElement.options[selectElement.selectedIndex];
+                                        if (selectedOption && selectedOption.dataset.price) {
+                                            totalPrice += parseInt(selectedOption.dataset.price) || 0;
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    // Debug output
+                    console.log("Total price updated to: " + totalPrice);
+
+                    // Update total price display
+                    totalPriceDisplay.innerText = `R${totalPrice}`;
+                    totalAmountInput.value = totalPrice;
+                }
+
+                // Function to update cupcakes price
+                function updateCupcakesPrice() {
+                    const quantity = parseInt(cupcakesQuantity.value) || 0;
+
+                    // Ensure minimum quantity of 12
+                    if (quantity < 12) {
+                        cupcakesQuantity.value = 12;
+                    }
+
+                    // Determine price per unit based on quantity
+                    const pricePerUnit = quantity >= 35 ? 17 : 19;
+
+                    // Calculate subtotal
+                    const updatedQuantity = parseInt(cupcakesQuantity.value);
+                    const subtotal = pricePerUnit * updatedQuantity;
+
+                    // Display subtotal for cupcakes
+                    cupcakesSubtotal.textContent = `R${subtotal}`;
+
+                    // Debug output
+                    console.log("Cupcakes subtotal updated to: " + subtotal);
+
+                    // Update the total price (including all products)
+                    updateTotalPrice();
+                }
+
+                // Main function to toggle visibility of all sections
+                function toggleProductSections() {
+                    // Hide all package sections initially
+                    document.querySelectorAll(".package-select").forEach(section => {
+                        section.style.display = "none";
+                    });
+
+                    // Hide custom section by default
+                    bentoCustom.style.display = "none";
+                    customSection.style.display = "none";
+                    totalSection.style.display = "block";
+                    flavorSelect.style.display = "block";
+
+                    // Show the appropriate section based on selected product
+                    if (productSelect.value === "Bento Cake") {
+                        bentoPackageContainer.style.display = "block";
+                        bentoCustom.style.display = "block";
+                    } else if (productSelect.value === "Muffins") {
+                        muffinsPackageContainer.style.display = "block";
+                    } else if (productSelect.value === "Cupcakes") {
+                        cupcakesPackageContainer.style.display = "block";
+                    } else if (productSelect.value === "Desserts") {
+                        dessertContainer.style.display = "block";
+                        flavorSelect.style.display = "none";
+                    } else if (productSelect.value === "Celebration Cake" || productSelect.value === "Cake") {
+                        customSection.style.display = "block";
+                        totalSection.style.display = "none";
+                    }
+
+                    // Update the price whenever sections change
+                    updateTotalPrice();
+                }
+
+                // Attach event listener to product selection
+                productSelect.addEventListener("change", toggleProductSections);
+
+                // Attach event listeners to all package selects
+                document.querySelectorAll(".package-select select").forEach(select => {
+                    select.addEventListener("change", updateTotalPrice);
+                });
+
+                // Add event listeners for the cupcakes quantity input
+                cupcakesQuantity.addEventListener("input", updateCupcakesPrice);
+
+                // Also handle blur event to ensure minimum quantity
+                cupcakesQuantity.addEventListener("blur", function () {
+                    if (parseInt(cupcakesQuantity.value) < 12) {
+                        cupcakesQuantity.value = 12;
+                        updateCupcakesPrice();
+                    }
+                });
+
+                // Initialize cupcakes price on load
+                updateCupcakesPrice();
+
+                // Initial setup on page load
+                toggleProductSections();
+            });
+        </script>
+
+
+
+
+        <%- include('partials/footer') %>
