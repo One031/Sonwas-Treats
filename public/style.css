@@ -17,17 +17,13 @@ h1{
 }
 
 .nav-link:hover {
-    color: rgba(255, 255, 255, 0.9) !important; /* Light pink hover effect */
-    transform: scale(1.05); /* Slight zoom on hover */
+    color: rgba(255, 255, 255, 0.9) !important; 
+    transform: scale(1.05); 
 }
 
-/* Click animation */
 .nav-link:active {
     transform: scale(0.95);
 }
-
-
-
 
 #features{
     display: flex;
@@ -56,7 +52,7 @@ h5{
 #footer{
     background-color:rgb(230, 186, 218);
 }
-
+  
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -69,7 +65,6 @@ h5{
   .card:active {
     transform: scale(1);
   }
-
 
   a:link {
     color: black;
@@ -90,8 +85,6 @@ h5{
     margin: 20px 0;
 }
 
-
-
 .policy-section ul {
     list-style-type: none;
     padding: 0;
@@ -101,13 +94,43 @@ h5{
     margin: 5px 0;
 }
 
-
-
   @media (max-width: 768px) {
     .home {
-        background-size: cover; /* Prevents zoom-in effect on mobile */
-        background-position: center; /* Adjusts focus on mobile */
-        min-height: 50vh; /* Reduces height to fit mobile screens */
+        background-size: cover; 
+        background-position: left; 
+        min-height: 50vh; 
         padding: 10px;
     }
   }
+
+  @media (prefers-color-scheme: dark) {
+    .btn-dark {
+        color: white !important;
+    }
+}
+
+ /* Fix for Android and iOS to ensure date input is properly styled */
+ input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+}
+
+/* Make the calendar icon more tappable on mobile */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    padding: 8px;
+    margin-right: -8px;
+}
+
+/* Ensure proper text visibility */
+input[type="date"]::-webkit-datetime-edit {
+    color: #333;
+}
+
+/* Fix for iOS dark mode */
+@media (prefers-color-scheme: dark) {
+    input[type="date"] {
+        background-color: #fff;
+        color: #333;
+    }
+}

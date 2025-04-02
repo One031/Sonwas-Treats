@@ -1,14 +1,19 @@
 <%- include('partials/header') %>
 
-    <% const productName=product || "Select Product" ; const flavorName=flavor || "Select Flavor" ; const dessertName = dessert || "Select a Dessert"; %>
+    <% const productName=product || "Select Product" ; const flavorName=flavor || "Select Flavor" ; const
+        dessertName=dessert || "Select a Dessert" ; %>
 
-        <section class="container py-5" style="max-width: 800px; margin-top: 80px;">
+        <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+            <div class="text-center px-4 w-100">
+                <h1 class="display-5 fw-bold text-center">Order Details</h1>
+                <p class="text-center">Customize your order and submit the details below.</p>
+            </div>
+        </div>
+        </section>
 
 
-            <h1 class="display-5 fw-bold text-center">Order Details</h1>
-            <p class="text-center">Customize your order and submit the details below.</p>
-
-            <form action="/submit-order" style="margin-top: 360px;" method="POST" enctype="multipart/form-data">
+        <section class="container py-5">
+            <form action="/submit-order" method="POST" enctype="multipart/form-data">
                 <!-- Policy Information -->
                 <div class="policy-section">
                     <h3>Order Policy</h3>
@@ -145,23 +150,26 @@
                         <label class="form-label">Dessert</label>
                         <select class="form-select" name="dessert">
                             <option value="" disabled selected>Select a Dessert</option>
-                            <option value="lemon-meringue" data-price="700" <%=dessertName==="Lemon Meringue" ? "selected" : "" %> >Lemon Meringue - R700</option>
-                            <option value="peppermint-tart" data-price="700"  <%=dessertName==="Peppermint Tart" ? "selected" : "" %>>Peppermint Tart - R700</option>
-                            <option value="milk-tart" data-price="650"  <%=dessertName==="Milk Tart" ? "selected" : "" %>>Milk Tart - R650</option>
+                            <option value="lemon-meringue" data-price="700" <%=dessertName==="Lemon Meringue"
+                                ? "selected" : "" %> >Lemon Meringue - R700</option>
+                            <option value="peppermint-tart" data-price="700" <%=dessertName==="Peppermint Tart"
+                                ? "selected" : "" %>>Peppermint Tart - R700</option>
+                            <option value="milk-tart" data-price="650" <%=dessertName==="Milk Tart" ? "selected" : "" %>
+                                >Milk Tart - R650</option>
                         </select>
                     </div>
                 </div>
 
 
                 <!-- Flavor Selection -->
-                <div class="mb-3"  style="display: block;" id="flavor-select">
+                <div class="mb-3" style="display: block;" id="flavor-select">
                     <label class="form-label">Flavor</label>
                     <select class="form-select" name="flavor">
                         <option value="" disabled selected>Select a Flavor</option>
                         <option value="Chocolate" <%=flavorName==="Chocolate" ? "selected" : "" %>
                             >Chocolate</option>
-                        <option value="Double Chocolate"<%=flavorName==="Double Chocolate" ? "selected"
-                            : "" %>>Double Chocolate</option>
+                        <option value="Double Chocolate" <%=flavorName==="Double Chocolate" ? "selected" : "" %>>Double
+                            Chocolate</option>
                         <option value="Vanilla" <%=flavorName==="Vanilla" ? "selected" : "" %>>Vanilla
                         </option>
                         <option value="Strawberry" <%=flavorName==="Strawberry" ? "selected" : "" %>
@@ -243,22 +251,45 @@
                 <h4 class="mt-4">Select Date</h4>
                 <div class="mb-3">
                     <label for="date">Date:</label>
-                    <input type="date" id="date" name="date">
+                    <input type="date" id="date" name="date"
+                        style="display: block; width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;">
                 </div>
 
                 <script>
-                    // Get today's date
-                    const today = new Date();
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const dateInput = document.getElementById('date');
 
-                    // Get the date 7 days from today
-                    const disabledUntil = new Date();
-                    disabledUntil.setDate(today.getDate() + 7);
+                        // Get today's date
+                        const today = new Date();
 
-                    // Convert to YYYY-MM-DD format
-                    const minDate = disabledUntil.toISOString().split('T')[0];
+                        // Get the date 7 days from today
+                        const futureDate = new Date();
+                        futureDate.setDate(today.getDate() + 7);
 
-                    // Set the min attribute to 7 days from today
-                    document.getElementById('date').setAttribute('min', minDate);
+                        // Format to YYYY-MM-DD
+                        const minDate = futureDate.toISOString().split('T')[0];
+
+                        // Set the min attribute
+                        dateInput.setAttribute('min', minDate);
+
+                        // Set a default value (optional - 7 days from now)
+                        dateInput.value = minDate;
+
+                        // Add click handler for iOS devices where sometimes
+                        // the date picker needs an extra prompt
+                        dateInput.addEventListener('touchend', function (e) {
+                            // Prevent default behavior
+                            e.preventDefault();
+
+                            // Force focus
+                            this.focus();
+
+                            // For iOS, sometimes clicking directly on input works better
+                            if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
+                                this.click();
+                            }
+                        });
+                    });
                 </script>
 
                 <!-- Additional Notes -->

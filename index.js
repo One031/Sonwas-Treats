@@ -116,7 +116,7 @@ app.post("/submit-order", upload.single("referenceImage"), async (req, res) => {
             text-align: center; 
             color: black;
         ">
-            <h1 style="font-family: 'Libre Baskerville', serif; font-size: 40px; margin: 0; color:black;">
+            <h1 style="font-family: 'Libre Baskerville', serif; font-size: 40px; margin: 0; color:white;">
                 Sonwa's Treats
             </h1>
         </div>
