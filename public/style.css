@@ -4,6 +4,15 @@
 
 }
 
+@media (max-width: 768px) {
+    .home {
+        background-size: cover !important;
+        background-position: 38% 50% !important;
+        min-height: 70vh !important;
+        padding: 20px !important;
+    }
+}
+
 span{
     font-family: 'Libre Baskerville', serif;
 }
@@ -95,12 +104,7 @@ h5{
 }
 
   @media (max-width: 768px) {
-    .home {
-        background-size: cover; 
-        background-position: left; 
-        min-height: 50vh; 
-        padding: 10px;
-    }
+   
   }
 
   @media (prefers-color-scheme: dark) {
